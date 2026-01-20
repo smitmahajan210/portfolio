@@ -163,7 +163,7 @@ export default function App() {
         <div className="grid-container">
           
           <motion.div className="card" whileHover={{ y: -5 }}>
-            <Terminal size={40} color="var(--accent)" style={{marginBottom:'1rem'}}/>
+            <Code2 size={40} color="var(--accent)" style={{marginBottom:'1rem'}}/>
             <h3 style={{marginTop:0}}>Used Car Price Prediction</h3>
             <p>Designed regression-based ML models for automotive price prediction. Deployed via Django with automated notifications.</p>
             <div className="tag-container">
