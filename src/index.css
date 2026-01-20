@@ -78,7 +78,7 @@ body {
   /* DEFAULT: Dark Mode Image */
   background-color: var(--bg-primary);
   background-image: linear-gradient(to right, var(--bg-primary) 0%, rgba(0,0,0,0.6) 0%), 
-                    url('/src/bg_dark.jpg'); /* Make sure this file exists in /public */
+                    url('https://smitmahajan210.github.io/portfolio/hero-dark.jpg'); 
   
   background-size: cover;
   background-position: center;
@@ -89,7 +89,7 @@ body {
 .light .hero-section {
   /* LIGHT: Light Mode Image */
   background-image: linear-gradient(to right, var(--bg-primary) 0%, rgba(255,255,255,0.6) 0%), 
-                    url('/src/bg_light.jpg'); /* Make sure this file exists in /public */
+                    url('https://smitmahajan210.github.io/portfolio/hero-light.jpg'); 
 }
 
 .hero-name { font-size: 4rem; font-weight: 800; margin: 0; line-height: 1.1; color: var(--text-primary); }
