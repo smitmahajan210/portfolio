@@ -4,22 +4,20 @@
    1. COLOR THEMES
    ========================================= */
 :root {
-  /* DARK MODE (Default) */
-  --bg-primary: #050505;       /* Pitch Black */
-  --bg-secondary: #0a0a0a;     /* Dark Card BG */
+  --bg-primary: #050505;
+  --bg-secondary: #0a0a0a;
   --text-primary: #ffffff;
   --text-secondary: #a1a1aa;
-  --accent: #8b5cf6;           /* Purple */
+  --accent: #8b5cf6;
   --border: #27272a;
 }
 
-/* LIGHT MODE */
 .light {
-  --bg-primary: #ffffff;       /* Pure White */
-  --bg-secondary: #f4f4f5;     /* Light Gray Card BG */
-  --text-primary: #18181b;     /* Dark Text */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f4f4f5;
+  --text-primary: #18181b;
   --text-secondary: #52525b;
-  --accent: #7c3aed;           /* Darker Purple */
+  --accent: #7c3aed;
   --border: #e4e4e7;
 }
 
@@ -35,7 +33,7 @@ body {
 }
 
 /* =========================================
-   2. NAVBAR (Top Left Button / Top Right Links)
+   2. NAVBAR
    ========================================= */
 .navbar {
   position: fixed;
@@ -43,10 +41,7 @@ body {
   width: 100%;
   padding: 1rem 2rem;
   display: flex;
-  
-  /* Pushes the Left Group (Button+SM) and Right Group (Links) apart */
   justify-content: space-between; 
-  
   align-items: center;
   z-index: 1000;
   background: var(--bg-primary);
@@ -66,19 +61,26 @@ body {
 .nav-link:hover { color: var(--accent); }
 
 /* =========================================
-   3. HERO SECTION (Dynamic Images)
+   3. HERO SECTION
    ========================================= */
 .hero-section {
   height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   padding: 0 10%;
   position: relative;
   
-  /* DEFAULT: Dark Mode Image */
   background-color: var(--bg-primary);
-  background-image: linear-gradient(to right, var(--bg-primary) 0%, rgba(0,0,0,0.6) 0%), 
-                    url('https://smitmahajan210.github.io/portfolio/hero-dark.jpg'); 
+  
+  /* DARK MODE GRADIENT: 
+     rgba(0, 0, 0, 0.4) means black with 40% opacity. 
+     Change 0.4 to 0.2 for lighter, or 0.6 for darker. 
+  */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('https://smitmahajan210.github.io/portfolio/hero-dark.jpg'); 
   
   background-size: cover;
   background-position: center;
@@ -87,9 +89,10 @@ body {
 
 /* LIGHT MODE OVERRIDE */
 .light .hero-section {
-  /* LIGHT: Light Mode Image */
-  background-image: linear-gradient(to right, var(--bg-primary) 0%, rgba(255,255,255,0.6) 0%), 
-                    url('https://smitmahajan210.github.io/portfolio/hero-light.jpg'); 
+  /* LIGHT MODE GRADIENT: White overlay with 40% opacity */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+    url('https://smitmahajan210.github.io/portfolio/hero-light.jpg'); 
 }
 
 .hero-name { font-size: 4rem; font-weight: 800; margin: 0; line-height: 1.1; color: var(--text-primary); }
@@ -117,10 +120,35 @@ body {
   border-radius: 12px;
   border: 1px solid var(--border);
   transition: transform 0.2s, border-color 0.2s, background-color 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 .card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
-.tag-container { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.5rem; }
+/* --- NEW: Project Button Style --- */
+.project-link-btn {
+  margin-top: auto; /* Pushes button to bottom of card */
+  padding: 0.8rem 1.2rem;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.project-link-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.tag-container { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
 .tag {
   background: rgba(139, 92, 246, 0.1);
   color: var(--text-primary);
@@ -132,7 +160,7 @@ body {
 }
 
 /* =========================================
-   5. TIMELINE (Experience)
+   5. TIMELINE
    ========================================= */
 .timeline {
   position: relative;
@@ -176,10 +204,28 @@ body {
   border: 1px solid var(--border);
   text-align: left;
   transition: background-color 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- NEW: Timeline Logo Styles --- */
+.timeline-logo-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  width: fit-content;
+}
+.timeline-logo {
+  height: 40px; /* Adjust size as needed */
+  width: auto;
+  object-fit: contain;
+  background: white; /* White BG to ensure logos are visible in dark mode */
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
 }
 
 /* =========================================
-   6. FOOTER
+   6. FOOTER & MOBILE
    ========================================= */
 .footer {
   text-align: center;
@@ -189,9 +235,6 @@ body {
   color: var(--text-secondary);
 }
 
-/* =========================================
-   7. MOBILE FIXES
-   ========================================= */
 @media screen and (max-width: 768px) {
   .timeline::after { left: 31px; }
   .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
@@ -199,8 +242,5 @@ body {
   .left, .right { left: 0; }
   .left .timeline-dot, .right .timeline-dot { left: 21px; }
   .hero-name { font-size: 3rem; }
-  
-  /* Stack navbar items on small screens */
   .navbar { padding: 1rem; }
-  .nav-link { font-size: 0.85rem; }
 }
