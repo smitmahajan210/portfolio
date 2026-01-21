@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
-  Github, Linkedin, Mail, MapPin, Phone, 
-  Server, Cloud, Brain, Code2, 
-  Sun, Moon, ExternalLink
+  Github, Linkedin, Mail, Phone, 
+  Server, Cloud, Brain, Code2, Database, Layout, 
+  Sun, Moon, ExternalLink, Briefcase // Added Briefcase Icon
 } from "lucide-react";
 
 export default function App() {
@@ -13,9 +13,20 @@ export default function App() {
     document.body.className = theme === "light" ? "light" : "";
   }, [theme]);
 
+  // --- ANIMATIONS ---
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
+  const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
   return (
@@ -38,9 +49,9 @@ export default function App() {
 
         <div style={{ display: 'flex', gap: '2rem' }}>
           <a href="#about" className="nav-link">About</a>
+          <a href="#skills" className="nav-link">Skills</a>
           <a href="#experience" className="nav-link">Experience</a>
           <a href="#projects" className="nav-link">Projects</a>
-          <a href="#skills" className="nav-link">Skills</a>
           <a href="#contact" className="nav-link">Contact</a>
         </div>
       </nav>
@@ -62,78 +73,150 @@ export default function App() {
         </motion.div>
       </header>
 
-      {/* EXPERIENCE TIMELINE */}
+      {/* TECHNICAL EXPERTISE */}
+      <section id="skills" className="section-container">
+        <h2 className="section-title">Technical Expertise</h2>
+        <div className="grid-container">
+          <div className="card">
+            <Database size={40} style={{marginBottom:'1rem', color: 'var(--text-primary)'}}/>
+            <h3>Backend Development & Databases</h3>
+            <p style={{fontSize:'0.95rem', lineHeight:'1.6', marginBottom:'1.5rem', color: 'var(--text-secondary)'}}>
+              Experienced in building and optimizing scalable backend systems using Python, CI/CD pipelines. Proficient in designing RESTful APIs and microservices architecture.
+            </p>
+            <span style={{fontSize:'0.85rem', fontWeight:'bold', marginBottom:'0.5rem', color:'var(--text-primary)'}}>Tech stack:</span>
+            <div className="tag-container">{['Python','Java','SQL','REST APIs','Microservices','Redis'].map(s=><span key={s} className="tag">{s}</span>)}</div>
+          </div>
+
+          <div className="card">
+            <Cloud size={40} style={{marginBottom:'1rem', color: 'var(--text-primary)'}}/>
+            <h3>DevOps & Cloud Engineering</h3>
+            <p style={{fontSize:'0.95rem', lineHeight:'1.6', marginBottom:'1.5rem', color: 'var(--text-secondary)'}}>
+              Designed and implemented scalable backend automation frameworks using Azure and AWS Cloud. Automated deployments with Docker, Kubernetes, Kafka and CI/CD pipelines.
+            </p>
+            <span style={{fontSize:'0.85rem', fontWeight:'bold', marginBottom:'0.5rem', color:'var(--text-primary)'}}>Tech stack:</span>
+            <div className="tag-container">{['Azure','AWS','Docker','Kubernetes','Kafka','CI/CD'].map(s=><span key={s} className="tag">{s}</span>)}</div>
+          </div>
+
+          <div className="card">
+            <Brain size={40} style={{marginBottom:'1rem', color: 'var(--text-primary)'}}/>
+            <h3>AI & Blockchain Innovation</h3>
+            <p style={{fontSize:'0.95rem', lineHeight:'1.6', marginBottom:'1.5rem', color: 'var(--text-secondary)'}}>
+              Developed AI-powered applications and blockchain-based decentralized solutions. Integrated pre-trained AI models and built secure smart contracts.
+            </p>
+            <span style={{fontSize:'0.85rem', fontWeight:'bold', marginBottom:'0.5rem', color:'var(--text-primary)'}}>Tech stack:</span>
+            <div className="tag-container">{['AI Code Completion','Ethereum','Solidity','NFTs','Hugging Face','LangChain','Streamlit','Qdrant'].map(s=><span key={s} className="tag">{s}</span>)}</div>
+          </div>
+
+           <div className="card">
+            <Layout size={40} style={{marginBottom:'1rem', color: 'var(--text-primary)'}}/>
+            <h3>Frontend & Full Stack Development</h3>
+            <p style={{fontSize:'0.95rem', lineHeight:'1.6', marginBottom:'1.5rem', color: 'var(--text-secondary)'}}>
+              Built responsive and interactive web applications using React.js and Javascript. Passionate about modern UI/UX design and optimizing performance.
+            </p>
+            <span style={{fontSize:'0.85rem', fontWeight:'bold', marginBottom:'0.5rem', color:'var(--text-primary)'}}>Tech stack:</span>
+            <div className="tag-container">{['React.js','TypeScript','JavaScript','HTML5','CSS3','Tailwind CSS'].map(s=><span key={s} className="tag">{s}</span>)}</div>
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIENCE & EDUCATION */}
       <section id="experience" className="section-container">
         <h2 className="section-title">Experience & Education</h2>
         <div className="timeline">
           
-          {/* 1. UB (Right) */}
+          {/* 1. UB (Right) -> Slides in from Right */}
           <div className="timeline-item right">
-            <div className="timeline-dot"></div>
-            <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
-              {/* Header: Logo + Date */}
+            <div className="timeline-dot"><Briefcase size={20} /></div>
+            <motion.div 
+              className="timeline-content" 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }} 
+              variants={slideInRight}
+            >
               <div className="timeline-header">
                 <a href="https://www.buffalo.edu/" target="_blank" rel="noreferrer" className="timeline-logo-link">
                   <img src="/portfolio/ub.png" alt="UB" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
                 </a>
                 <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>Aug 2025 – Dec 2026</span>
               </div>
-              
               <h3 style={{margin: '0.5rem 0'}}>MS Computer Science (AI/ML)</h3>
               <p style={{color:'var(--text-primary)'}}>University at Buffalo – SUNY</p>
             </motion.div>
           </div>
 
-          {/* 2. TCS (Left) */}
+          {/* 2. TCS (Left) -> Slides in from Left */}
           <div className="timeline-item left">
-            <div className="timeline-dot"></div>
-            <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
-              {/* Header: Logo + Date */}
+            <div className="timeline-dot"><Briefcase size={20} /></div>
+            <motion.div 
+              className="timeline-content" 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }} 
+              variants={slideInLeft}
+            >
               <div className="timeline-header">
                 <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
                   <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
                 </a>
                 <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>July 2022 – Aug 2025</span>
               </div>
-
               <h3 style={{margin: '0.5rem 0'}}>Software Developer</h3>
-              <p style={{color:'var(--text-primary)'}}>Tata Consultancy Services (Client: ABN AMRO)</p>
-              <ul style={{fontSize:'0.9rem', paddingLeft: '1rem'}}>
-                <li>Designed scalable backend automation frameworks using Python & REST APIs.</li>
-                <li>Reduced deployment time by 2 days using Azure DevOps pipelines.</li>
+              <p style={{color:'var(--text-primary)', marginBottom: '1rem'}}>Tata Consultancy Services (Client: ABN AMRO)</p>
+              
+              <ul style={{fontSize:'0.9rem', paddingLeft: '1rem', lineHeight: '1.6'}}>
+                <li>Designed and implemented scalable backend automation frameworks using Python, RESTful APIs, microservices architecture, CI/CD pipelines, and cloud services, improving reliability and efficiency.</li>
+                <li>Built end-to-end automated deployment pipelines for database artifacts across staging, testing, and production environments using Git-based version control and Azure DevOps, reducing manual interventions and cutting deployment time by 2 days.</li>
+                <li>Developed metadata-driven services on Databricks, generating structured JSON payloads to support API responses, increasing system throughput and improving data delivery performance by 25% week-over-week.</li>
+                <li>Engineered on-demand API endpoints with support for historical backfills and reprocessing, enabling fault recovery and data correction workflows while improving processing speed by 3x and reducing operational costs.</li>
+                <li>Created a real-time monitoring and observability dashboard to track production pipelines and automated workflows, enabling faster incident detection and proactive issue resolution.</li>
               </ul>
             </motion.div>
           </div>
 
-          {/* 3. TCS Associate (Right) */}
+          {/* 3. TCS Associate (Right) -> Slides in from Right */}
           <div className="timeline-item right">
-            <div className="timeline-dot"></div>
-            <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
-              {/* Header: Logo + Date */}
+            <div className="timeline-dot"><Briefcase size={20} /></div>
+            <motion.div 
+              className="timeline-content" 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }} 
+              variants={slideInRight}
+            >
               <div className="timeline-header">
                 <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
                   <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
                 </a>
                 <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>Aug 2021 – June 2022</span>
               </div>
-
               <h3 style={{margin: '0.5rem 0'}}>Associate Software Developer</h3>
-              <p style={{color:'var(--text-primary)'}}>Tata Consultancy Services</p>
+              <p style={{color:'var(--text-primary)', marginBottom: '1rem'}}>Tata Consultancy Services</p>
+              
+              <ul style={{fontSize:'0.9rem', paddingLeft: '1rem', lineHeight: '1.6'}}>
+                <li>Contributed to the migration of the TCS portal (Ultimatix) from a web-only platform to Android and iOS mobile applications. Developed a dynamic, customizable homepage tailored to individual user preferences.</li>
+                <li>Enhanced the user interface of the TCS health insurance portal, leading to increased user engagement.</li>
+                <li>Increased application processing speed by 1.5x, resulting in faster and more efficient user experiences.</li>
+              </ul>
             </motion.div>
           </div>
 
-          {/* 4. Pune (Left) */}
+          {/* 4. Pune (Left) -> Slides in from Left */}
           <div className="timeline-item left">
-            <div className="timeline-dot"></div>
-            <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
-               {/* Header: Logo + Date */}
+            <div className="timeline-dot"><Briefcase size={20} /></div>
+            <motion.div 
+              className="timeline-content" 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }} 
+              variants={slideInLeft}
+            >
                <div className="timeline-header">
                 <a href="http://www.unipune.ac.in/" target="_blank" rel="noreferrer" className="timeline-logo-link">
                   <img src="/portfolio/pune.png" alt="Pune University" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
                 </a>
                 <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>Aug 2017 – Jun 2021</span>
               </div>
-
               <h3 style={{margin: '0.5rem 0'}}>Bachelor of Engineering</h3>
               <p style={{color:'var(--text-primary)'}}>University of Pune</p>
             </motion.div>
@@ -142,11 +225,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* PROJECTS GRID */}
+      {/* ACADEMIC PROJECTS */}
       <section id="projects" className="section-container">
         <h2 className="section-title">Academic Projects</h2>
         <div className="grid-container">
-          
           <motion.div className="card" whileHover={{ y: -5 }}>
             <Code2 size={40} color="var(--accent)" style={{marginBottom:'1rem'}}/>
             <h3>Resume Skill Verifier</h3>
@@ -186,29 +268,6 @@ export default function App() {
               View Code <ExternalLink size={16}/>
             </a>
           </motion.div>
-
-        </div>
-      </section>
-
-      {/* SKILLS */}
-      <section id="skills" className="section-container">
-        <h2 className="section-title">Technical Skills</h2>
-        <div className="grid-container">
-          <div className="card">
-            <Server size={32} style={{marginBottom:'1rem'}}/>
-            <h3>Backend & DB</h3>
-            <div className="tag-container">{['Python','Java','SQL','Microservices','Redis'].map(s=><span key={s} className="tag">{s}</span>)}</div>
-          </div>
-          <div className="card">
-            <Cloud size={32} style={{marginBottom:'1rem'}}/>
-            <h3>Cloud & DevOps</h3>
-            <div className="tag-container">{['Azure','Docker','Kubernetes','CI/CD','Kafka'].map(s=><span key={s} className="tag">{s}</span>)}</div>
-          </div>
-          <div className="card">
-            <Brain size={32} style={{marginBottom:'1rem'}}/>
-            <h3>AI & Data</h3>
-            <div className="tag-container">{['ML','NLP','PySpark','Power BI'].map(s=><span key={s} className="tag">{s}</span>)}</div>
-          </div>
         </div>
       </section>
 
