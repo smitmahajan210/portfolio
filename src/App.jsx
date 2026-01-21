@@ -73,7 +73,7 @@ export default function App() {
             <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
               {/* LOGO LINK */}
               <a href="https://www.buffalo.edu/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                <img src="/ub.png" alt="University at Buffalo" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                <img src="/portfolio/ub.png" alt="University at Buffalo" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
               </a>
               
               <span style={{color: 'var(--accent)', fontFamily:'monospace'}}>Aug 2025 – Dec 2026</span>
@@ -88,7 +88,7 @@ export default function App() {
             <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
               {/* LOGO LINK */}
               <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                <img src="/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
               </a>
 
               <span style={{color: 'var(--accent)', fontFamily:'monospace'}}>July 2022 – Aug 2025</span>
@@ -107,7 +107,7 @@ export default function App() {
             <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
               {/* LOGO LINK */}
               <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                <img src="/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
               </a>
 
               <span style={{color: 'var(--accent)', fontFamily:'monospace'}}>Aug 2021 – June 2022</span>
@@ -122,7 +122,7 @@ export default function App() {
             <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
                {/* LOGO LINK */}
                <a href="http://www.unipune.ac.in/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                <img src="/pune.png" alt="Pune University" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                <img src="/portfolio/pune.png" alt="Pune University" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
               </a>
 
               <span style={{color: 'var(--accent)', fontFamily:'monospace'}}>Aug 2017 – Jun 2021</span>
