@@ -74,10 +74,7 @@ body {
   
   background-color: var(--bg-primary);
   
-  /* DARK MODE GRADIENT: 
-     rgba(0, 0, 0, 0.4) means black with 40% opacity. 
-     Change 0.4 to 0.2 for lighter, or 0.6 for darker. 
-  */
+  /* Dim Gradient + Image */
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url('https://smitmahajan210.github.io/portfolio/hero-dark.jpg'); 
@@ -87,9 +84,7 @@ body {
   transition: background-image 0.5s ease-in-out;
 }
 
-/* LIGHT MODE OVERRIDE */
 .light .hero-section {
-  /* LIGHT MODE GRADIENT: White overlay with 40% opacity */
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
     url('https://smitmahajan210.github.io/portfolio/hero-light.jpg'); 
@@ -125,9 +120,8 @@ body {
 }
 .card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
-/* --- NEW: Project Button Style --- */
 .project-link-btn {
-  margin-top: auto; /* Pushes button to bottom of card */
+  margin-top: auto;
   padding: 0.8rem 1.2rem;
   background: transparent;
   border: 1px solid var(--accent);
@@ -143,10 +137,7 @@ body {
   gap: 0.5rem;
   margin-top: 1.5rem;
 }
-.project-link-btn:hover {
-  background: var(--accent);
-  color: #fff;
-}
+.project-link-btn:hover { background: var(--accent); color: #fff; }
 
 .tag-container { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
 .tag {
@@ -208,19 +199,24 @@ body {
   flex-direction: column;
 }
 
-/* --- NEW: Timeline Logo Styles --- */
-.timeline-logo-link {
-  display: inline-block;
-  margin-bottom: 1rem;
-  width: fit-content;
+/* --- NEW: Header to align Logo + Date --- */
+.timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
 }
+
+.timeline-logo-link { display: flex; align-items: center; }
+
+/* --- UPDATED: Smaller Logo Size --- */
 .timeline-logo {
-  height: 40px; /* Adjust size as needed */
+  height: 28px;  /* Small size */
   width: auto;
   object-fit: contain;
-  background: white; /* White BG to ensure logos are visible in dark mode */
-  padding: 4px;
-  border-radius: 6px;
+  background: white;
+  padding: 3px;
+  border-radius: 4px;
   border: 1px solid var(--border);
 }
 
@@ -243,4 +239,5 @@ body {
   .left .timeline-dot, .right .timeline-dot { left: 21px; }
   .hero-name { font-size: 3rem; }
   .navbar { padding: 1rem; }
+  .timeline-header { gap: 0.8rem; }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
   Github, Linkedin, Mail, MapPin, Phone, 
-  Server, Cloud, Brain, Code2, // Used Code2 for all projects
+  Server, Cloud, Brain, Code2, 
   Sun, Moon, ExternalLink
 } from "lucide-react";
 
@@ -71,12 +71,14 @@ export default function App() {
           <div className="timeline-item right">
             <div className="timeline-dot"></div>
             <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
-              {/* LOGO LINK */}
-              <a href="https://www.buffalo.edu/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                <img src="/portfolio/ub.png" alt="University at Buffalo" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
-              </a>
+              {/* Header: Logo + Date */}
+              <div className="timeline-header">
+                <a href="https://www.buffalo.edu/" target="_blank" rel="noreferrer" className="timeline-logo-link">
+                  <img src="/portfolio/ub.png" alt="UB" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                </a>
+                <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>Aug 2025 – Dec 2026</span>
+              </div>
               
-              <span style={{color: 'var(--accent)', fontFamily:'monospace'}}>Aug 2025 – Dec 2026</span>
               <h3 style={{margin: '0.5rem 0'}}>MS Computer Science (AI/ML)</h3>
               <p style={{color:'var(--text-primary)'}}>University at Buffalo – SUNY</p>
             </motion.div>
@@ -86,12 +88,14 @@ export default function App() {
           <div className="timeline-item left">
             <div className="timeline-dot"></div>
             <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
-              {/* LOGO LINK */}
-              <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
-              </a>
+              {/* Header: Logo + Date */}
+              <div className="timeline-header">
+                <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
+                  <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                </a>
+                <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>July 2022 – Aug 2025</span>
+              </div>
 
-              <span style={{color: 'var(--accent)', fontFamily:'monospace'}}>July 2022 – Aug 2025</span>
               <h3 style={{margin: '0.5rem 0'}}>Software Developer</h3>
               <p style={{color:'var(--text-primary)'}}>Tata Consultancy Services (Client: ABN AMRO)</p>
               <ul style={{fontSize:'0.9rem', paddingLeft: '1rem'}}>
@@ -105,12 +109,14 @@ export default function App() {
           <div className="timeline-item right">
             <div className="timeline-dot"></div>
             <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
-              {/* LOGO LINK */}
-              <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
-              </a>
+              {/* Header: Logo + Date */}
+              <div className="timeline-header">
+                <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
+                  <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                </a>
+                <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>Aug 2021 – June 2022</span>
+              </div>
 
-              <span style={{color: 'var(--accent)', fontFamily:'monospace'}}>Aug 2021 – June 2022</span>
               <h3 style={{margin: '0.5rem 0'}}>Associate Software Developer</h3>
               <p style={{color:'var(--text-primary)'}}>Tata Consultancy Services</p>
             </motion.div>
@@ -120,12 +126,14 @@ export default function App() {
           <div className="timeline-item left">
             <div className="timeline-dot"></div>
             <motion.div className="timeline-content" initial="hidden" whileInView="visible" variants={fadeIn}>
-               {/* LOGO LINK */}
-               <a href="http://www.unipune.ac.in/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                <img src="/portfolio/pune.png" alt="Pune University" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
-              </a>
+               {/* Header: Logo + Date */}
+               <div className="timeline-header">
+                <a href="http://www.unipune.ac.in/" target="_blank" rel="noreferrer" className="timeline-logo-link">
+                  <img src="/portfolio/pune.png" alt="Pune University" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                </a>
+                <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>Aug 2017 – Jun 2021</span>
+              </div>
 
-              <span style={{color: 'var(--accent)', fontFamily:'monospace'}}>Aug 2017 – Jun 2021</span>
               <h3 style={{margin: '0.5rem 0'}}>Bachelor of Engineering</h3>
               <p style={{color:'var(--text-primary)'}}>University of Pune</p>
             </motion.div>
@@ -139,7 +147,6 @@ export default function App() {
         <h2 className="section-title">Academic Projects</h2>
         <div className="grid-container">
           
-          {/* 1. Resume Skill Verifier */}
           <motion.div className="card" whileHover={{ y: -5 }}>
             <Code2 size={40} color="var(--accent)" style={{marginBottom:'1rem'}}/>
             <h3>Resume Skill Verifier</h3>
@@ -150,7 +157,6 @@ export default function App() {
             </a>
           </motion.div>
 
-          {/* 2. MediTriage */}
           <motion.div className="card" whileHover={{ y: -5 }}>
             <Code2 size={40} color="var(--accent)" style={{marginBottom:'1rem'}}/>
             <h3>MediTriage Live</h3>
@@ -161,7 +167,6 @@ export default function App() {
             </a>
           </motion.div>
 
-          {/* 3. Brain Tumor Classification */}
           <motion.div className="card" whileHover={{ y: -5 }}>
             <Code2 size={40} color="var(--accent)" style={{marginBottom:'1rem'}}/>
             <h3>Brain Tumor Classification</h3>
@@ -172,7 +177,6 @@ export default function App() {
             </a>
           </motion.div>
 
-          {/* 4. Used Car Price (Linked to Resume Skill per request) */}
           <motion.div className="card" whileHover={{ y: -5 }}>
             <Code2 size={40} color="var(--accent)" style={{marginBottom:'1rem'}}/>
             <h3>Used Car Price Prediction</h3>
