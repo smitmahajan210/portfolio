@@ -129,7 +129,7 @@ body {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* Floating Tags (Keep as is) */
+/* Styling for the floating tags */
 .floating-tag {
   position: absolute;
   font-family: 'Fira Code', monospace;
@@ -137,16 +137,21 @@ body {
   font-weight: 600;
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  
+  /* UPDATED: Much fainter colors (0.05 background, 0.1 text) */
+  background: rgba(255, 255, 255, 0.02); 
+  color: rgba(255, 255, 255, 0.1);       
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  
   pointer-events: none;
   white-space: nowrap;
+  z-index: 1; /* Keep them behind the text (which is z-index 10) */
 }
+
 .light .floating-tag {
-  background: rgba(0, 0, 0, 0.03);
-  color: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.02);
+  color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 /* =========================================

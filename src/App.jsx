@@ -23,7 +23,7 @@ export default function App() {
       setText(fullText.slice(0, index + 1));
       index++;
       if (index > fullText.length) clearInterval(interval);
-    }, 50); // Speed of typing (lower is faster)
+    }, 50);
     return () => clearInterval(interval);
   }, []);
 
@@ -33,13 +33,13 @@ export default function App() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -50 },
+  const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
-  const slideInRight = {
-    hidden: { opacity: 0, x: 50 },
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
@@ -48,6 +48,14 @@ export default function App() {
     "Java", "SQL", "Azure", "CI/CD", "FastAPI", "TensorFlow",
     "Tailwind", "Git", "REST API", "Microservices", "Kafka", "Redis"
   ];
+
+  // Helper to get random Y position avoiding the center text area
+  // Returns a value in 0-25% (top) or 75-100% (bottom) range
+  const getSafeY = () => {
+    const isTop = Math.random() < 0.5;
+    if (isTop) return Math.random() * 25; // Top 25%
+    return 75 + Math.random() * 25;       // Bottom 25% (75-100)
+  };
 
   return (
     <div>
@@ -81,18 +89,24 @@ export default function App() {
          ========================================= */}
       <header id="about" className="hero-section">
         
-        {/* FLOATING SKILLS */}
+        {/* FLOATING SKILLS - FIXED: Avoids Center Area */}
         {floatingSkills.map((skill, index) => (
           <motion.div
             key={index}
             className="floating-tag"
-            initial={{ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }}
-            animate={{ 
-              x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
-              y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
+            initial={{ 
+              x: Math.random() * 100 + "vw", 
+              y: getSafeY() + "vh" 
             }}
-            transition={{ duration: 25 + Math.random() * 10, repeat: Infinity, ease: "linear" }}
-            style={{ top: `${Math.random() * 80}%`, left: `${Math.random() * 80}%` }}
+            animate={{ 
+              x: [Math.random() * 100 + "vw", Math.random() * 100 + "vw"],
+              y: [getSafeY() + "vh", getSafeY() + "vh"], // Keep drifting in safe zones
+            }}
+            transition={{ 
+              duration: 40 + Math.random() * 20, // SLOWER (40-60s)
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
           >
             {skill}
           </motion.div>
