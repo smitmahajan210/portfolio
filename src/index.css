@@ -61,7 +61,7 @@ body {
 .nav-link:hover { color: var(--accent); }
 
 /* =========================================
-   3. HERO SECTION
+   3. HERO SECTION (Floating Background)
    ========================================= */
 .hero-section {
   height: 100vh;
@@ -71,26 +71,55 @@ body {
   align-items: flex-start;
   padding: 0 10%;
   position: relative;
-  background-color: var(--bg-primary);
+  overflow: hidden; /* vital: keeps floating tags inside the box */
   
-  /* Dim Gradient + Image */
-  background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url('https://smitmahajan210.github.io/portfolio/hero-dark.jpg'); 
-  
-  background-size: cover;
-  background-position: center;
-  transition: background-image 0.5s ease-in-out;
+  /* Clean Dark Background (Matches screenshot) */
+  background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
 }
 
 .light .hero-section {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
-    url('https://smitmahajan210.github.io/portfolio/hero-light.jpg'); 
+  background: radial-gradient(circle at center, #f4f4f5 0%, #ffffff 100%);
 }
 
-.hero-name { font-size: 4rem; font-weight: 800; margin: 0; line-height: 1.1; color: var(--text-primary); }
-.hero-role { font-family: 'Fira Code', monospace; color: var(--accent); margin: 1rem 0 2rem; font-size: 1.2rem; }
+.hero-name { 
+  font-size: 4rem; 
+  font-weight: 800; 
+  margin: 0; 
+  line-height: 1.1; 
+  color: var(--text-primary);
+  position: relative; /* Brings text above floating tags */
+  z-index: 10;
+}
+
+.hero-role { 
+  font-family: 'Fira Code', monospace; 
+  color: var(--accent); 
+  margin: 1rem 0 2rem; 
+  font-size: 1.2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Styling for the floating tags */
+.floating-tag {
+  position: absolute;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03); /* Very subtle background */
+  color: rgba(255, 255, 255, 0.2);       /* Dim text so it doesn't distract */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  pointer-events: none; /* Mouse clicks pass through them */
+  white-space: nowrap;
+}
+
+.light .floating-tag {
+  background: rgba(0, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
 
 /* =========================================
    4. SECTIONS & GRIDS

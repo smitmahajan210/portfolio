@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { 
   Github, Linkedin, Mail, Phone, 
   Server, Cloud, Brain, Code2, Database, Layout, 
-  Sun, Moon, ExternalLink, Briefcase // Added Briefcase Icon
+  Sun, Moon, ExternalLink, Briefcase 
 } from "lucide-react";
 
 export default function App() {
@@ -28,6 +28,13 @@ export default function App() {
     hidden: { opacity: 0, x: 50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
+
+  // --- FLOATING TAGS DATA ---
+  const floatingSkills = [
+    "Python", "React", "AWS", "Docker", "Kubernetes", "PyTorch", 
+    "Java", "SQL", "Azure", "CI/CD", "FastAPI", "TensorFlow",
+    "Tailwind", "Git", "REST API", "Microservices", "Kafka", "Redis"
+  ];
 
   return (
     <div>
@@ -56,9 +63,40 @@ export default function App() {
         </div>
       </nav>
 
-      {/* HERO SECTION */}
+      {/* =========================================
+          HERO SECTION (With Floating Background)
+         ========================================= */}
       <header id="about" className="hero-section">
-        <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+        
+        {/* FLOATING SKILLS ANIMATION */}
+        {floatingSkills.map((skill, index) => (
+          <motion.div
+            key={index}
+            className="floating-tag"
+            initial={{ 
+              x: Math.random() * window.innerWidth, 
+              y: Math.random() * window.innerHeight 
+            }}
+            animate={{ 
+              x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth, Math.random() * window.innerWidth],
+              y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight, Math.random() * window.innerHeight],
+            }}
+            transition={{ 
+              duration: 20 + Math.random() * 10, // Slow random movement (20-30s)
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            style={{
+              top: `${Math.random() * 80}%`, 
+              left: `${Math.random() * 80}%`,
+            }}
+          >
+            {skill}
+          </motion.div>
+        ))}
+
+        {/* MAIN TEXT (Relative z-index to sit on top) */}
+        <motion.div initial="hidden" animate="visible" variants={fadeIn} style={{ position: 'relative', zIndex: 10 }}>
           <h1 className="hero-name">Smit Mahajan</h1>
           <div className="hero-role">Software Developer | AI/ML Graduate Student</div>
           <p style={{ maxWidth: '600px', fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
@@ -124,7 +162,6 @@ export default function App() {
         <h2 className="section-title">Experience & Education</h2>
         <div className="timeline">
           
-          {/* 1. UB (Right) -> Slides in from Right */}
           <div className="timeline-item right">
             <div className="timeline-dot"><Briefcase size={20} /></div>
             <motion.div 
@@ -145,7 +182,6 @@ export default function App() {
             </motion.div>
           </div>
 
-          {/* 2. TCS (Left) -> Slides in from Left */}
           <div className="timeline-item left">
             <div className="timeline-dot"><Briefcase size={20} /></div>
             <motion.div 
@@ -174,7 +210,6 @@ export default function App() {
             </motion.div>
           </div>
 
-          {/* 3. TCS Associate (Right) -> Slides in from Right */}
           <div className="timeline-item right">
             <div className="timeline-dot"><Briefcase size={20} /></div>
             <motion.div 
@@ -201,7 +236,6 @@ export default function App() {
             </motion.div>
           </div>
 
-          {/* 4. Pune (Left) -> Slides in from Left */}
           <div className="timeline-item left">
             <div className="timeline-dot"><Briefcase size={20} /></div>
             <motion.div 
