@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { 
   Github, Linkedin, Mail, Phone, 
@@ -6,17 +6,59 @@ import {
   Sun, Moon, ExternalLink, Briefcase 
 } from "lucide-react";
 
+// --- SEPARATE COMPONENT TO FIX SPEED GLITCH ---
+// Using React.memo prevents this from re-rendering when the Typing Effect runs
+const FloatingBackground = React.memo(() => {
+  const floatingSkills = [
+    "Python", "React", "AWS", "Docker", "Kubernetes", "PyTorch", 
+    "Java", "SQL", "Azure", "CI/CD", "FastAPI", "TensorFlow",
+    "Tailwind", "Git", "REST API", "Microservices", "Kafka", "Redis"
+  ];
+
+  // Helper to get safe Y positions (Top 25% or Bottom 25%)
+  const getSafeY = (isInitial = false) => {
+    const isTop = Math.random() < 0.5;
+    if (isTop) return Math.random() * 25; 
+    return 75 + Math.random() * 25;       
+  };
+
+  return (
+    <>
+      {floatingSkills.map((skill, index) => (
+        <motion.div
+          key={index}
+          className="floating-tag"
+          initial={{ 
+            x: Math.random() * 100 + "vw", 
+            y: getSafeY(true) + "vh" 
+          }}
+          animate={{ 
+            x: [Math.random() * 100 + "vw", Math.random() * 100 + "vw"],
+            y: [getSafeY() + "vh", getSafeY() + "vh"],
+          }}
+          transition={{ 
+            duration: 45 + Math.random() * 20, // Slow, consistent speed
+            repeat: Infinity, 
+            ease: "linear" 
+          }}
+        >
+          {skill}
+        </motion.div>
+      ))}
+    </>
+  );
+});
+
 export default function App() {
   const [theme, setTheme] = useState("dark");
   const [text, setText] = useState("");
   const fullText = "Software Developer | MS CS specialization AI / ML";
 
-  // --- THEME EFFECT ---
   useEffect(() => {
     document.body.className = theme === "light" ? "light" : "";
   }, [theme]);
 
-  // --- TYPING EFFECT ---
+  // --- TYPING EFFECT (Now safely isolated) ---
   useEffect(() => {
     let index = 0;
     const interval = setInterval(() => {
@@ -27,7 +69,6 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // --- ANIMATIONS ---
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
@@ -41,20 +82,6 @@ export default function App() {
   const slideInLeft = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
-  };
-
-  const floatingSkills = [
-    "Python", "React", "AWS", "Docker", "Kubernetes", "PyTorch", 
-    "Java", "SQL", "Azure", "CI/CD", "FastAPI", "TensorFlow",
-    "Tailwind", "Git", "REST API", "Microservices", "Kafka", "Redis"
-  ];
-
-  // Helper to get random Y position avoiding the center text area
-  // Returns a value in 0-25% (top) or 75-100% (bottom) range
-  const getSafeY = () => {
-    const isTop = Math.random() < 0.5;
-    if (isTop) return Math.random() * 25; // Top 25%
-    return 75 + Math.random() * 25;       // Bottom 25% (75-100)
   };
 
   return (
@@ -84,33 +111,11 @@ export default function App() {
         </div>
       </nav>
 
-      {/* =========================================
-          HERO SECTION (Centered + Typing Effect)
-         ========================================= */}
+      {/* HERO SECTION */}
       <header id="about" className="hero-section">
         
-        {/* FLOATING SKILLS - FIXED: Avoids Center Area */}
-        {floatingSkills.map((skill, index) => (
-          <motion.div
-            key={index}
-            className="floating-tag"
-            initial={{ 
-              x: Math.random() * 100 + "vw", 
-              y: getSafeY() + "vh" 
-            }}
-            animate={{ 
-              x: [Math.random() * 100 + "vw", Math.random() * 100 + "vw"],
-              y: [getSafeY() + "vh", getSafeY() + "vh"], // Keep drifting in safe zones
-            }}
-            transition={{ 
-              duration: 40 + Math.random() * 20, // SLOWER (40-60s)
-              repeat: Infinity, 
-              ease: "linear" 
-            }}
-          >
-            {skill}
-          </motion.div>
-        ))}
+        {/* Isolated Floating Background */}
+        <FloatingBackground />
 
         {/* CENTERED CONTENT */}
         <motion.div initial="hidden" animate="visible" variants={fadeIn} style={{ position: 'relative', zIndex: 10 }}>
@@ -119,7 +124,6 @@ export default function App() {
           
           <h1 className="hero-name">Smit Mahajan</h1>
           
-          {/* TYPING ROLE */}
           <div className="hero-role">
             {text}<span className="cursor">|</span>
           </div>
@@ -129,7 +133,6 @@ export default function App() {
             data pipelines, and cloud-native applications. Currently pursuing MS in Computer Science (AI/ML) at SUNY Buffalo.
           </p>
           
-          {/* CENTERED ICONS */}
           <div style={{ display: 'flex', gap: '2rem', marginTop: '2.5rem', justifyContent: 'center' }}>
             <a href="https://github.com/smitmahajan210" target="_blank" rel="noreferrer" className="nav-link"><Github size={32} /></a>
             <a href="https://www.linkedin.com/in/smitmahajan/" target="_blank" rel="noreferrer" className="nav-link"><Linkedin size={32} /></a>

@@ -61,15 +61,15 @@ body {
 .nav-link:hover { color: var(--accent); }
 
 /* =========================================
-   3. HERO SECTION (Floating Background + Centered)
+   3. HERO SECTION (Floating Background)
    ========================================= */
 .hero-section {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;       /* CENTER HORIZONTALLY */
-  text-align: center;        /* CENTER TEXT */
+  align-items: center;
+  text-align: center;
   padding: 0 10%;
   position: relative;
   overflow: hidden;
@@ -82,17 +82,15 @@ body {
   background: radial-gradient(circle at center, #f4f4f5 0%, #ffffff 100%);
 }
 
-/* "Hello, I'm" Text */
 .hero-greeting {
   font-size: 1.5rem;
   font-weight: 500;
-  color: var(--text-primary); /* White */
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   position: relative;
   z-index: 10;
 }
 
-/* "Smit Mahajan" - Gradient Text */
 .hero-name { 
   font-size: 4.5rem; 
   font-weight: 800; 
@@ -100,8 +98,6 @@ body {
   line-height: 1.1; 
   position: relative;
   z-index: 10;
-  
-  /* Gradient Color Effect */
   background: linear-gradient(to right, #8b5cf6, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -109,7 +105,6 @@ body {
   color: transparent;
 }
 
-/* "Software Developer..." - Typing Effect */
 .hero-role { 
   font-family: 'Fira Code', monospace; 
   color: var(--text-secondary); 
@@ -117,10 +112,9 @@ body {
   font-size: 1.3rem;
   position: relative;
   z-index: 10;
-  min-height: 1.5rem; /* Prevents layout jump */
+  min-height: 1.5rem;
 }
 
-/* Blinking Cursor for Typing Effect */
 .cursor {
   display: inline-block;
   width: 2px;
@@ -129,7 +123,7 @@ body {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* Styling for the floating tags */
+/* RESTORED: Brighter/Original Visibility */
 .floating-tag {
   position: absolute;
   font-family: 'Fira Code', monospace;
@@ -138,20 +132,20 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 20px;
   
-  /* UPDATED: Much fainter colors (0.05 background, 0.1 text) */
-  background: rgba(255, 255, 255, 0.02); 
-  color: rgba(255, 255, 255, 0.1);       
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  /* Brighter values (Original look) */
+  background: rgba(255, 255, 255, 0.05); 
+  color: rgba(255, 255, 255, 0.3);       
+  border: 1px solid rgba(255, 255, 255, 0.1);
   
   pointer-events: none;
   white-space: nowrap;
-  z-index: 1; /* Keep them behind the text (which is z-index 10) */
+  z-index: 1; 
 }
 
 .light .floating-tag {
-  background: rgba(0, 0, 0, 0.02);
-  color: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* =========================================
