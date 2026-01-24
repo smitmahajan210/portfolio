@@ -61,19 +61,20 @@ body {
 .nav-link:hover { color: var(--accent); }
 
 /* =========================================
-   3. HERO SECTION (Floating Background)
+   3. HERO SECTION (Floating Background + Centered)
    ========================================= */
 .hero-section {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;       /* CENTER HORIZONTALLY */
+  text-align: center;        /* CENTER TEXT */
   padding: 0 10%;
   position: relative;
-  overflow: hidden; /* vital: keeps floating tags inside the box */
+  overflow: hidden;
   
-  /* Clean Dark Background (Matches screenshot) */
+  /* Clean Dark Background */
   background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
 }
 
@@ -81,26 +82,54 @@ body {
   background: radial-gradient(circle at center, #f4f4f5 0%, #ffffff 100%);
 }
 
-.hero-name { 
-  font-size: 4rem; 
-  font-weight: 800; 
-  margin: 0; 
-  line-height: 1.1; 
-  color: var(--text-primary);
-  position: relative; /* Brings text above floating tags */
-  z-index: 10;
-}
-
-.hero-role { 
-  font-family: 'Fira Code', monospace; 
-  color: var(--accent); 
-  margin: 1rem 0 2rem; 
-  font-size: 1.2rem;
+/* "Hello, I'm" Text */
+.hero-greeting {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary); /* White */
+  margin-bottom: 0.5rem;
   position: relative;
   z-index: 10;
 }
 
-/* Styling for the floating tags */
+/* "Smit Mahajan" - Gradient Text */
+.hero-name { 
+  font-size: 4.5rem; 
+  font-weight: 800; 
+  margin: 0; 
+  line-height: 1.1; 
+  position: relative;
+  z-index: 10;
+  
+  /* Gradient Color Effect */
+  background: linear-gradient(to right, #8b5cf6, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* "Software Developer..." - Typing Effect */
+.hero-role { 
+  font-family: 'Fira Code', monospace; 
+  color: var(--text-secondary); 
+  margin: 1.5rem 0 2rem; 
+  font-size: 1.3rem;
+  position: relative;
+  z-index: 10;
+  min-height: 1.5rem; /* Prevents layout jump */
+}
+
+/* Blinking Cursor for Typing Effect */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background-color: var(--accent);
+  animation: blink 1s infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Floating Tags (Keep as is) */
 .floating-tag {
   position: absolute;
   font-family: 'Fira Code', monospace;
@@ -108,13 +137,12 @@ body {
   font-weight: 600;
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.03); /* Very subtle background */
-  color: rgba(255, 255, 255, 0.2);       /* Dim text so it doesn't distract */
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  pointer-events: none; /* Mouse clicks pass through them */
+  pointer-events: none;
   white-space: nowrap;
 }
-
 .light .floating-tag {
   background: rgba(0, 0, 0, 0.03);
   color: rgba(0, 0, 0, 0.2);

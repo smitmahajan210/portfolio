@@ -8,10 +8,24 @@ import {
 
 export default function App() {
   const [theme, setTheme] = useState("dark");
+  const [text, setText] = useState("");
+  const fullText = "Software Developer | MS CS specialization AI / ML";
 
+  // --- THEME EFFECT ---
   useEffect(() => {
     document.body.className = theme === "light" ? "light" : "";
   }, [theme]);
+
+  // --- TYPING EFFECT ---
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setText(fullText.slice(0, index + 1));
+      index++;
+      if (index > fullText.length) clearInterval(interval);
+    }, 50); // Speed of typing (lower is faster)
+    return () => clearInterval(interval);
+  }, []);
 
   // --- ANIMATIONS ---
   const fadeIn = {
@@ -29,7 +43,6 @@ export default function App() {
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
-  // --- FLOATING TAGS DATA ---
   const floatingSkills = [
     "Python", "React", "AWS", "Docker", "Kubernetes", "PyTorch", 
     "Java", "SQL", "Azure", "CI/CD", "FastAPI", "TensorFlow",
@@ -64,50 +77,51 @@ export default function App() {
       </nav>
 
       {/* =========================================
-          HERO SECTION (With Floating Background)
+          HERO SECTION (Centered + Typing Effect)
          ========================================= */}
       <header id="about" className="hero-section">
         
-        {/* FLOATING SKILLS ANIMATION */}
+        {/* FLOATING SKILLS */}
         {floatingSkills.map((skill, index) => (
           <motion.div
             key={index}
             className="floating-tag"
-            initial={{ 
-              x: Math.random() * window.innerWidth, 
-              y: Math.random() * window.innerHeight 
-            }}
+            initial={{ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }}
             animate={{ 
-              x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth, Math.random() * window.innerWidth],
-              y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight, Math.random() * window.innerHeight],
+              x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
+              y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
             }}
-            transition={{ 
-              duration: 20 + Math.random() * 10, // Slow random movement (20-30s)
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            style={{
-              top: `${Math.random() * 80}%`, 
-              left: `${Math.random() * 80}%`,
-            }}
+            transition={{ duration: 25 + Math.random() * 10, repeat: Infinity, ease: "linear" }}
+            style={{ top: `${Math.random() * 80}%`, left: `${Math.random() * 80}%` }}
           >
             {skill}
           </motion.div>
         ))}
 
-        {/* MAIN TEXT (Relative z-index to sit on top) */}
+        {/* CENTERED CONTENT */}
         <motion.div initial="hidden" animate="visible" variants={fadeIn} style={{ position: 'relative', zIndex: 10 }}>
+          
+          <div className="hero-greeting">Hello, I'm</div>
+          
           <h1 className="hero-name">Smit Mahajan</h1>
-          <div className="hero-role">Software Developer | AI/ML Graduate Student</div>
-          <p style={{ maxWidth: '600px', fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+          
+          {/* TYPING ROLE */}
+          <div className="hero-role">
+            {text}<span className="cursor">|</span>
+          </div>
+
+          <p style={{ maxWidth: '600px', fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: '0 auto' }}>
             Software Developer with 4+ years of experience designing and scaling distributed backend systems, 
             data pipelines, and cloud-native applications. Currently pursuing MS in Computer Science (AI/ML) at SUNY Buffalo.
           </p>
-          <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem' }}>
-            <a href="https://github.com/smitmahajan210" target="_blank" rel="noreferrer" className="nav-link"><Github /></a>
-            <a href="https://www.linkedin.com/in/smitmahajan/" target="_blank" rel="noreferrer" className="nav-link"><Linkedin /></a>
-            <a href="mailto:smitmahajan@hotmail.com" className="nav-link"><Mail /></a>
+          
+          {/* CENTERED ICONS */}
+          <div style={{ display: 'flex', gap: '2rem', marginTop: '2.5rem', justifyContent: 'center' }}>
+            <a href="https://github.com/smitmahajan210" target="_blank" rel="noreferrer" className="nav-link"><Github size={32} /></a>
+            <a href="https://www.linkedin.com/in/smitmahajan/" target="_blank" rel="noreferrer" className="nav-link"><Linkedin size={32} /></a>
+            <a href="mailto:smitmahajan@hotmail.com" className="nav-link"><Mail size={32} /></a>
           </div>
+
         </motion.div>
       </header>
 
