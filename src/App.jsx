@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 // --- SEPARATE COMPONENT TO FIX SPEED GLITCH ---
-// Using React.memo prevents this from re-rendering when the Typing Effect runs
+// Using React.memo prevents re-renders during typing
 const FloatingBackground = React.memo(() => {
   const floatingSkills = [
     "Python", "React", "AWS", "Docker", "Kubernetes", "PyTorch", 
@@ -15,7 +15,7 @@ const FloatingBackground = React.memo(() => {
     "Tailwind", "Git", "REST API", "Microservices", "Kafka", "Redis"
   ];
 
-  // Helper to get safe Y positions (Top 25% or Bottom 25%)
+  // Helper to get safe Y positions (Top 25% or Bottom 25%) to avoid text overlap
   const getSafeY = (isInitial = false) => {
     const isTop = Math.random() < 0.5;
     if (isTop) return Math.random() * 25; 
@@ -58,7 +58,7 @@ export default function App() {
     document.body.className = theme === "light" ? "light" : "";
   }, [theme]);
 
-  // --- TYPING EFFECT (Now safely isolated) ---
+  // --- TYPING EFFECT ---
   useEffect(() => {
     let index = 0;
     const interval = setInterval(() => {
@@ -204,7 +204,7 @@ export default function App() {
             >
               <div className="timeline-header">
                 <a href="https://www.buffalo.edu/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                  <img src="/portfolio/ub.png" alt="UB" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                  <img src="/portfolio/UB_.png" alt="UB" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
                 </a>
                 <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>Aug 2025 – Dec 2026</span>
               </div>
@@ -224,7 +224,7 @@ export default function App() {
             >
               <div className="timeline-header">
                 <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                  <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                  <img src="/portfolio/tcs_2.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
                 </a>
                 <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>July 2022 – Aug 2025</span>
               </div>
@@ -252,7 +252,7 @@ export default function App() {
             >
               <div className="timeline-header">
                 <a href="https://www.tcs.com/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                  <img src="/portfolio/tcs.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                  <img src="/portfolio/tcs_2.png" alt="TCS" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
                 </a>
                 <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>Aug 2021 – June 2022</span>
               </div>
@@ -278,7 +278,7 @@ export default function App() {
             >
                <div className="timeline-header">
                 <a href="http://www.unipune.ac.in/" target="_blank" rel="noreferrer" className="timeline-logo-link">
-                  <img src="/portfolio/pune.png" alt="Pune University" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
+                  <img src="/portfolio/pune.jpeg" alt="Pune University" className="timeline-logo" onError={(e) => e.target.style.display = 'none'} />
                 </a>
                 <span style={{color: 'var(--accent)', fontFamily:'monospace', fontSize: '0.9rem'}}>Aug 2017 – Jun 2021</span>
               </div>

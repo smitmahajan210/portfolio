@@ -123,7 +123,7 @@ body {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* RESTORED: Brighter/Original Visibility */
+/* Floating Tags */
 .floating-tag {
   position: absolute;
   font-family: 'Fira Code', monospace;
@@ -132,7 +132,7 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 20px;
   
-  /* Brighter values (Original look) */
+  /* Visible but subtle style */
   background: rgba(255, 255, 255, 0.05); 
   color: rgba(255, 255, 255, 0.3);       
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -172,7 +172,7 @@ body {
   transition: transform 0.2s, border-color 0.2s, background-color 0.3s;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Ensure left alignment like screenshot */
+  align-items: flex-start;
 }
 .card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
@@ -192,29 +192,23 @@ body {
   justify-content: center;
   gap: 0.5rem;
   margin-top: 1.5rem;
-  width: 100%; /* Full width button on mobile, auto on desktop */
+  width: 100%;
   box-sizing: border-box;
 }
 .project-link-btn:hover { background: var(--accent); color: #fff; }
 
-/* --- UPDATED: TAGS TO MATCH SCREENSHOT (White Pills) --- */
 .tag-container { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
 .tag {
-  background: #ffffff;      /* White background */
-  color: #000000;           /* Black text */
+  background: #ffffff;
+  color: #000000;
   padding: 0.4rem 0.8rem;
-  border-radius: 100px;     /* Pill shape */
+  border-radius: 100px;
   font-size: 0.75rem;
-  font-weight: 600;         /* Bold text */
+  font-weight: 600;
   font-family: 'Fira Code', monospace;
   border: none;
 }
-
-/* Light Mode Override for Tags (Invert colors so they are visible) */
-.light .tag {
-  background: #000000;
-  color: #ffffff;
-}
+.light .tag { background: #000000; color: #ffffff; }
 
 /* =========================================
    5. TIMELINE
@@ -233,7 +227,7 @@ body {
   margin-left: -1px;
 }
 .timeline-item {
-  padding: 10px 50px; /* Increased padding to give space from the larger icon */
+  padding: 10px 50px;
   position: relative;
   width: 50%;
   box-sizing: border-box;
@@ -241,24 +235,21 @@ body {
 .left { left: 0; text-align: right; }
 .right { left: 50%; text-align: left; }
 
-/* --- UPDATED: Icon Dot Style --- */
 .timeline-dot {
   position: absolute;
-  width: 40px;          /* Bigger size for icon */
+  width: 40px;
   height: 40px;
-  background: var(--accent); /* Purple background */
+  background: var(--accent);
   border-radius: 50%;
   top: 15px;
   z-index: 10;
-  display: flex;        /* Center the icon */
+  display: flex;
   align-items: center;
   justify-content: center;
-  color: white;         /* White icon color */
-  box-shadow: 0 0 0 4px var(--bg-primary); /* "Border" that matches bg color */
+  color: white;
+  box-shadow: 0 0 0 4px var(--bg-primary);
 }
-
-/* Center the dot exactly on the line */
-.left .timeline-dot { right: -20px; } /* Half of width (40px/2) */
+.left .timeline-dot { right: -20px; }
 .right .timeline-dot { left: -20px; }
 
 .timeline-content {
@@ -280,38 +271,12 @@ body {
 
 .timeline-logo-link { display: flex; align-items: center; }
 
+/* --- UPDATED: No White Box, No Border --- */
 .timeline-logo {
-  height: 28px;
+  height: 35px;
   width: auto;
   object-fit: contain;
-  background: white;
-  padding: 3px;
-  border-radius: none;
-}
-
-/* Mobile Adjustments */
-@media screen and (max-width: 768px) {
-  .timeline::after { left: 31px; }
-  .timeline-item { width: 100%; padding-left: 80px; padding-right: 25px; }
-  .left { text-align: left; }
-  .left, .right { left: 0; }
-  
-  /* Adjust dot position for mobile line */
-  .left .timeline-dot, .right .timeline-dot { 
-    left: 11px; /* Centers dot on the mobile line (at 31px) */
-    right: auto;
-  }
-}
-
-.timeline-logo-link { display: flex; align-items: center; }
-
-.timeline-logo {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
-  background: white;
-  padding: 3px;
-  border-radius: 4px;
+  /* Removed background: white and padding to make it transparent */
 }
 
 /* =========================================
@@ -327,10 +292,10 @@ body {
 
 @media screen and (max-width: 768px) {
   .timeline::after { left: 31px; }
-  .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+  .timeline-item { width: 100%; padding-left: 80px; padding-right: 25px; }
   .left { text-align: left; }
   .left, .right { left: 0; }
-  .left .timeline-dot, .right .timeline-dot { left: 21px; }
+  .left .timeline-dot, .right .timeline-dot { left: 11px; right: auto; }
   .hero-name { font-size: 3rem; }
   .navbar { padding: 1rem; }
   .timeline-header { gap: 0.8rem; }
