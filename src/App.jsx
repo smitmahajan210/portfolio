@@ -11,8 +11,9 @@ import {
 const FloatingBackground = React.memo(() => {
   const floatingSkills = [
     "Python", "React", "AWS", "Docker", "Kubernetes", "PyTorch", 
-    "Java", "SQL", "Azure", "CI/CD", "FastAPI", "TensorFlow",
-    "Tailwind", "Git", "REST API", "Microservices", "Kafka", "Redis"
+    "LangGraph", "LangChain", "LLMs", "AI Agents", "RAG", "Agentic AI",
+    "MCP", "FastAPI", "TensorFlow", "Tailwind", "Git", "REST API", 
+    "Microservices", "Kafka", "Redis"
   ];
 
   // Helper to get safe Y positions (Top 25% or Bottom 25%) to avoid text overlap
@@ -147,6 +148,23 @@ export default function App() {
         <h2 className="section-title">Technical Expertise</h2>
         <div className="grid-container">
           <div className="card">
+            <Brain size={40} style={{marginBottom:'1rem', color: 'var(--text-primary)'}}/>
+            <h3>AI & Agentic Systems / ML</h3>
+            <p style={{fontSize:'0.95rem', lineHeight:'1.6', marginBottom:'1.5rem', color: 'var(--text-secondary)'}}>
+              Engineered human-in-the-loop AI coding agents, multi-agent workflows, and LLM-powered applications. Specialized in RAG architectures, prompt engineering, model fine-tuning, and deep learning.
+            </p>
+            <span style={{fontSize:'0.85rem', fontWeight:'bold', marginBottom:'0.5rem', color:'var(--text-primary)'}}>Tech stack & Skills:</span>
+            <div className="tag-container">{[
+              'LLMs', 'AI Agents', 'Agentic AI', 'LangChain', 'LangGraph', 'RAG', 
+              'Prompt Engineering', 'Embeddings', 'Vector Databases', 'LLM Evaluation', 
+              'Deep Learning', 'PyTorch', 'Neural Networks', 'Generative AI (GenAI)', 
+              'Model Context Protocol (MCP)', 'Multi-Agent Orchestration', 'LLM Fine-Tuning (LoRA/QLoRA)', 
+              'Hugging Face Transformers', 'TensorFlow', 'MLOps', 'Model Deployment and Monitoring', 
+              'Computer Vision', 'NLP', 'Model Observability', 'Responsible AI'
+            ].map(s=><span key={s} className="tag">{s}</span>)}</div>
+          </div>
+
+          <div className="card">
             <Database size={40} style={{marginBottom:'1rem', color: 'var(--text-primary)'}}/>
             <h3>Backend Development & Databases</h3>
             <p style={{fontSize:'0.95rem', lineHeight:'1.6', marginBottom:'1.5rem', color: 'var(--text-secondary)'}}>
@@ -164,16 +182,6 @@ export default function App() {
             </p>
             <span style={{fontSize:'0.85rem', fontWeight:'bold', marginBottom:'0.5rem', color:'var(--text-primary)'}}>Tech stack:</span>
             <div className="tag-container">{['Azure','AWS','Docker','Kubernetes','Kafka','CI/CD'].map(s=><span key={s} className="tag">{s}</span>)}</div>
-          </div>
-
-          <div className="card">
-            <Brain size={40} style={{marginBottom:'1rem', color: 'var(--text-primary)'}}/>
-            <h3>AI & Blockchain Innovation</h3>
-            <p style={{fontSize:'0.95rem', lineHeight:'1.6', marginBottom:'1.5rem', color: 'var(--text-secondary)'}}>
-              Developed AI-powered applications and blockchain-based decentralized solutions. Integrated pre-trained AI models and built secure smart contracts.
-            </p>
-            <span style={{fontSize:'0.85rem', fontWeight:'bold', marginBottom:'0.5rem', color:'var(--text-primary)'}}>Tech stack:</span>
-            <div className="tag-container">{['AI Code Completion','Ethereum','Solidity','NFTs','Hugging Face','LangChain','Streamlit','Qdrant'].map(s=><span key={s} className="tag">{s}</span>)}</div>
           </div>
 
            <div className="card">
@@ -294,6 +302,23 @@ export default function App() {
       <section id="projects" className="section-container">
         <h2 className="section-title">Academic Projects</h2>
         <div className="grid-container">
+          <motion.div className="card" whileHover={{ y: -5 }}>
+            <Code2 size={40} color="var(--accent)" style={{marginBottom:'1rem'}}/>
+            <h3>Coding Agent Harness</h3>
+            <p>Human-in-the-loop AI coding agent harness with role-separated agents (Planner, Explorer, Coder, Tester) built using LangGraph & E2B sandboxes. Features human-gated diff approvals and isolated pytest execution.</p>
+            <div className="tag-container">
+              <span className="tag">LangGraph</span>
+              <span className="tag">AI Agents</span>
+              <span className="tag">LangChain</span>
+              <span className="tag">E2B Sandbox</span>
+              <span className="tag">Streamlit</span>
+              <span className="tag">Python</span>
+            </div>
+            <a href="https://github.com/smitmahajan210/coding_agent_harness" target="_blank" rel="noreferrer" className="project-link-btn">
+              View Code <ExternalLink size={16}/>
+            </a>
+          </motion.div>
+
           <motion.div className="card" whileHover={{ y: -5 }}>
             <Code2 size={40} color="var(--accent)" style={{marginBottom:'1rem'}}/>
             <h3>Resume Skill Verifier</h3>
